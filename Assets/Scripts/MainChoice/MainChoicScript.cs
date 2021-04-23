@@ -31,13 +31,13 @@ public class MainChoicScript : MonoBehaviour
     AudioClip babkaTalk;
     private void Start()
     {
-        
+
     }
-   
+
     IEnumerator AudioGidMain()
     {
-        yield return new WaitForSeconds(9);
-        readyToChoice = true;
+        yield return new WaitForSeconds(1);
+
     }
     IEnumerator BackToMenu()
     {
@@ -47,18 +47,26 @@ public class MainChoicScript : MonoBehaviour
     }
     private void OnTriggerEnter(Collider other)
     {
-        if (other.tag == "afisha" && readyToChoice)
+        if (other.tag == "afisha")
         {
             SceneManager.LoadScene("afisha", LoadSceneMode.Single);
-             sreda = GameObject.FindGameObjectWithTag("sreda");
-             chetverg = GameObject.FindGameObjectWithTag("chetverg");
-             friday = GameObject.FindGameObjectWithTag("friday");
-            chetverg.SetActive(false);
-            friday.SetActive(false);
+            StartCoroutine(afisha());
+            IEnumerator afisha()
+            {
+                yield return new WaitForSeconds(3);
+                Debug.Log("a");
+                sreda = GameObject.FindGameObjectWithTag("sreda");
+                chetverg = GameObject.FindGameObjectWithTag("chetverg");
+                friday = GameObject.FindGameObjectWithTag("friday");
+                chetverg.SetActive(false);
+                friday.SetActive(false);
+            }
+
         }
 
-        if(other.tag == "CP")
+        if (other.tag == "CP")
         {
+            Debug.Log("af");
             sreda.SetActive(true);
             chetverg.SetActive(false);
             friday.SetActive(false);
@@ -75,34 +83,42 @@ public class MainChoicScript : MonoBehaviour
             chetverg.SetActive(false);
             friday.SetActive(true);
         }
-        
 
-        if (other.tag == "55+" && readyToChoice)
+
+        if (other.tag == "55+")
         {
+            Debug.Log("a");
             SceneManager.LoadScene("55+", LoadSceneMode.Single);
-            q1 = GameObject.FindGameObjectWithTag("1");
-            q2 = GameObject.FindGameObjectWithTag("2");
-            q3 = GameObject.FindGameObjectWithTag("3");
-            q4 = GameObject.FindGameObjectWithTag("4");
-            q5 = GameObject.FindGameObjectWithTag("5");
-            q6 = GameObject.FindGameObjectWithTag("6");
-            q7 = GameObject.FindGameObjectWithTag("7");
-            q8 = GameObject.FindGameObjectWithTag("8");
-            q9 = GameObject.FindGameObjectWithTag("9");
-            q10 = GameObject.FindGameObjectWithTag("10");
-            win = GameObject.FindGameObjectWithTag("win");
-            lose = GameObject.FindGameObjectWithTag("lose");
-            q2.SetActive(false);
-            q3.SetActive(false);
-            q4.SetActive(false);
-            q5.SetActive(false);
-            q6.SetActive(false);
-            q7.SetActive(false);
-            q8.SetActive(false);
-            q9.SetActive(false);
-            q10.SetActive(false);
-            win.SetActive(false);
-            lose.SetActive(false);
+            StartCoroutine(five());
+            IEnumerator five()
+
+            {
+                yield return new WaitForSeconds(3);
+                q1 = GameObject.FindGameObjectWithTag("1");
+                q2 = GameObject.FindGameObjectWithTag("2");
+                q3 = GameObject.FindGameObjectWithTag("3");
+                q4 = GameObject.FindGameObjectWithTag("4");
+                q5 = GameObject.FindGameObjectWithTag("5");
+                q6 = GameObject.FindGameObjectWithTag("6");
+                q7 = GameObject.FindGameObjectWithTag("7");
+                q8 = GameObject.FindGameObjectWithTag("8");
+                q9 = GameObject.FindGameObjectWithTag("9");
+                q10 = GameObject.FindGameObjectWithTag("10");
+                win = GameObject.FindGameObjectWithTag("win");
+                lose = GameObject.FindGameObjectWithTag("lose");
+                q2.SetActive(false);
+                q3.SetActive(false);
+                q4.SetActive(false);
+                q5.SetActive(false);
+                q6.SetActive(false);
+                q7.SetActive(false);
+                q8.SetActive(false);
+                q9.SetActive(false);
+                q10.SetActive(false);
+                win.SetActive(false);
+                lose.SetActive(false);
+            }
+
         }
         if (other.tag == "wrong")
         {
@@ -125,8 +141,9 @@ public class MainChoicScript : MonoBehaviour
 
 
 
-        if (other.tag == "vr" && readyToChoice)
+        if (other.tag == "vr")
         {
+            Debug.Log("a");
             SceneManager.LoadScene("VrVideoChoice", LoadSceneMode.Single);
 
 
@@ -143,7 +160,7 @@ public class MainChoicScript : MonoBehaviour
             vrMode += 2;
             exitFrom360 = true;
         }
-        
+
 
 
 
@@ -153,10 +170,11 @@ public class MainChoicScript : MonoBehaviour
         if (SteamVR_Actions._default.GrabGrip.GetStateDown(SteamVR_Input_Sources.Any))
         {
             SceneManager.LoadScene("MainChoice", LoadSceneMode.Single);
-            
+
         }
         if (qNum == 1)
         {
+
             q1.SetActive(false);
             q2.SetActive(true);
         }
@@ -203,6 +221,7 @@ public class MainChoicScript : MonoBehaviour
         if (qNum == 10)
         {
 
+
             q10.SetActive(false);
             StartCoroutine(BackToMenu());
             if (score > 5)
@@ -210,7 +229,7 @@ public class MainChoicScript : MonoBehaviour
                 win.SetActive(true);
 
             }
-            else
+            if (score < 5)
             {
                 lose.SetActive(false);
 
