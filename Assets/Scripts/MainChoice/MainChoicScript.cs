@@ -37,7 +37,9 @@ public class MainChoicScript : MonoBehaviour
     IEnumerator AudioGidMain()
     {
         yield return new WaitForSeconds(1);
-
+        GameObject audiobabka = GameObject.FindGameObjectWithTag("audio");
+        AudioSource audio = audiobabka.GetComponent<AudioSource>();
+        audio.Play();
     }
     IEnumerator BackToMenu()
     {
@@ -93,7 +95,7 @@ public class MainChoicScript : MonoBehaviour
             IEnumerator five()
 
             {
-                yield return new WaitForSeconds(3);
+                yield return new WaitForSeconds(2);
                 q1 = GameObject.FindGameObjectWithTag("1");
                 q2 = GameObject.FindGameObjectWithTag("2");
                 q3 = GameObject.FindGameObjectWithTag("3");
@@ -128,7 +130,14 @@ public class MainChoicScript : MonoBehaviour
             Renderer trueMat = trueq.GetComponent<Renderer>();
             trueMat.sharedMaterial.color = Color.green;
             qNum++;
+            StartCoroutine(answers());
+            IEnumerator answers()
 
+            {
+                yield return new WaitForSeconds(3);
+                WrongMat.sharedMaterial.color = Color.white;
+                trueMat.sharedMaterial.color = Color.white;
+            }
         }
         if (other.tag == "true")
         {
@@ -137,6 +146,13 @@ public class MainChoicScript : MonoBehaviour
             trueMat.sharedMaterial.color = Color.green;
             qNum++;
             score++;
+            StartCoroutine(answers());
+            IEnumerator answers()
+            {
+                yield return new WaitForSeconds(3);
+                WrongMat.sharedMaterial.color = Color.white;
+                trueMat.sharedMaterial.color = Color.white;
+            }
         }
 
 
@@ -174,65 +190,140 @@ public class MainChoicScript : MonoBehaviour
         }
         if (qNum == 1)
         {
+            StartCoroutine(answers());
+            IEnumerator answers()
 
-            q1.SetActive(false);
-            q2.SetActive(true);
+            {
+                yield return new WaitForSeconds(3);
+                q1.SetActive(false);
+                q2.SetActive(true);
+            }
         }
         if (qNum == 2)
         {
-            q2.SetActive(false);
-            q3.SetActive(true);
+            StartCoroutine(answers());
+            IEnumerator answers()
+
+            {
+                yield return new WaitForSeconds(3);
+                q2.SetActive(false);
+                q3.SetActive(true);
+            }
         }
         if (qNum == 3)
         {
-            q3.SetActive(false);
-            q4.SetActive(true);
+            StartCoroutine(answers());
+            IEnumerator answers()
+
+            {
+                yield return new WaitForSeconds(3);
+                q3.SetActive(false);
+                q4.SetActive(true);
+            }
         }
         if (qNum == 4)
         {
-            q4.SetActive(false);
-            q5.SetActive(true);
+            StartCoroutine(answers());
+            IEnumerator answers()
+
+            {
+                yield return new WaitForSeconds(3);
+                q4.SetActive(false);
+                q5.SetActive(true);
+            }
         }
         if (qNum == 5)
         {
-            q5.SetActive(false);
-            q6.SetActive(true);
+            StartCoroutine(answers());
+            IEnumerator answers()
+
+            {
+                yield return new WaitForSeconds(3);
+                q5.SetActive(false);
+                q6.SetActive(true);
+            }
         }
         if (qNum == 6)
         {
-            q6.SetActive(false);
-            q7.SetActive(true);
+            StartCoroutine(answers());
+            IEnumerator answers()
+
+            {
+                yield return new WaitForSeconds(3);
+                q6.SetActive(false);
+                q7.SetActive(true);
+            }
         }
         if (qNum == 7)
         {
-            q7.SetActive(false);
-            q8.SetActive(true);
+            StartCoroutine(answers());
+            IEnumerator answers()
+
+            {
+                yield return new WaitForSeconds(3);
+                q7.SetActive(false);
+                q8.SetActive(true);
+            }
         }
         if (qNum == 8)
         {
-            q8.SetActive(false);
-            q9.SetActive(true);
+            StartCoroutine(answers());
+            IEnumerator answers()
+
+            {
+                yield return new WaitForSeconds(3);
+                q8.SetActive(false);
+                q9.SetActive(true);
+            }
         }
+      /*  if (qNum == 9)
+        {
+            StartCoroutine(answers());
+            IEnumerator answers()
+
+            {
+                yield return new WaitForSeconds(3);
+                q9.SetActive(false);
+                q10.SetActive(true);
+            }
+        }*/
         if (qNum == 9)
         {
-            q9.SetActive(false);
-            q10.SetActive(true);
-        }
-        if (qNum == 10)
-        {
+           
+            StartCoroutine(answers());
+            IEnumerator answers()
 
-
-            q10.SetActive(false);
-            StartCoroutine(BackToMenu());
-            if (score > 5)
             {
-                win.SetActive(true);
+                yield return new WaitForSeconds(2);
+                q9.SetActive(false);
 
-            }
-            if (score < 5)
-            {
-                lose.SetActive(false);
 
+
+                if (score > 5)
+                {
+                    win.SetActive(true);
+
+                    StartCoroutine(corotine());
+                    IEnumerator corotine()
+                    {
+                        yield return new WaitForSeconds(3);
+                        SceneManager.LoadScene("MainChoice", LoadSceneMode.Single);
+                        SceneManager.UnloadSceneAsync("55+");
+                    }
+                }
+                if (score < 5)
+                {
+
+                    lose.SetActive(false);
+                    StartCoroutine(corotine());
+                    IEnumerator corotine()
+                    {
+                        yield return new WaitForSeconds(3);
+                        SceneManager.LoadScene("MainChoice", LoadSceneMode.Single);
+                        SceneManager.UnloadSceneAsync("55+");
+                    }
+
+                }
             }
         }
     }
